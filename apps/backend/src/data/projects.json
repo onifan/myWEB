@@ -1,0 +1,30 @@
+[
+  {
+    "id": "proj-1",
+    "slug": "remote-collaboration-platform",
+    "title": {
+      "zh-CN": "远程协作平台",
+      "en": "Remote Collaboration Platform"
+    },
+    "description": {
+      "zh-CN": "一款提供实时文档编辑、任务管理和视频会议功能的SaaS产品。",
+      "en": "A SaaS product offering real-time document editing, task management, and video conferencing."
+    },
+    "techStack": ["Next.js", "Hono.js", "WebSocket", "PostgreSQL"],
+    "imageUrl": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Project%20A"
+  },
+  {
+    "id": "proj-2",
+    "slug": "ecommerce-analytics-dashboard",
+    "title": {
+      "zh-CN": "电商数据分析面板",
+      "en": "E-commerce Analytics Dashboard"
+    },
+    "description": {
+      "zh-CN": "一个数据可视化仪表盘，帮助商家分析销售数据和用户行为。",
+      "en": "A data visualization dashboard to help merchants analyze sales data and user behavior."
+    },
+    "techStack": ["React", "TypeScript", "D3.js", "GraphQL"],
+    "imageUrl": "https://placehold.co/600x400/8B5CF6/FFFFFF?text=Project%20B"
+  }
+]
