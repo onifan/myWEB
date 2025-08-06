@@ -3,26 +3,7 @@ import { useTranslation } from '../hooks/useTranslation';
 import { X, Calendar, Clock, Tag, RefreshCw, Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-
-interface Article {
-  id: string;
-  slug: string;
-  title: {
-    'zh-CN': string;
-    en: string;
-  };
-  excerpt: {
-    'zh-CN': string;
-    en: string;
-  };
-  content: {
-    'zh-CN': string;
-    en: string;
-  };
-  publishDate: string;
-  readTime: string;
-  tags: string[];
-}
+import { apiUtils, Article } from '../config/api';
 
 interface ArticlesProps {
   isOpen: boolean;
@@ -55,14 +36,9 @@ const Articles: React.FC<ArticlesProps> = ({ isOpen, onClose }) => {
   const fetchArticles = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/articles');
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Articles fetched:', data);
-        setArticles(data);
-      } else {
-        console.error('Failed to fetch articles:', response.status, response.statusText);
-      }
+      const data = await apiUtils.getArticles();
+      console.log('Articles fetched:', data);
+      setArticles(data);
     } catch (error) {
       console.error('Failed to fetch articles:', error);
     } finally {

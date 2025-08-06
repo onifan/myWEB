@@ -1,12 +1,11 @@
 import type { InferGetServerSidePropsType, NextPage } from "next";
 import { useState, useEffect } from "react";
 import { useTranslation } from '../hooks/useTranslation';
+import { apiUtils, Project } from '../config/api';
 
 export const getServerSideProps = async () => {
   try {
-    const res = await fetch('http://localhost:3001/api/projects');
-    if (!res.ok) throw new Error('Failed to fetch projects');
-    const projects: Project[] = await res.json();
+    const projects = await apiUtils.getProjects();
     return { props: { projects } };
   } catch (error) {
     console.error(error);
@@ -120,8 +119,8 @@ const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <div key={project.id} className="bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-lg p-6 transform hover:-translate-y-1 hover:shadow-lg shadow-md transition-all duration-300">
-              <h4 className="text-xl font-bold text-gray-900 dark:text-white">{project.title[lang]}</h4>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">{project.description[lang]}</p>
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white">{project.title[lang as keyof typeof project.title]}</h4>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">{project.description[lang as keyof typeof project.description]}</p>
               <div className="flex flex-wrap gap-2 mt-3">
                 {project.techStack.map(tech => (
                   <span key={tech} className="bg-blue-100 dark:bg-sky-900/50 text-blue-800 dark:text-sky-300 text-xs font-semibold px-2.5 py-1 rounded-full">{tech}</span>
